@@ -1,0 +1,84 @@
+body {
+  --info-100: #0777ed;
+  --info-200: #1dcced;
+  --info-300: #0bb0ed;
+  --background: black;
+  background-color: var(--background);
+}
+
+.nitrogen-animated {
+  --offset: 3px;
+  border-radius: 50px;
+  border: 0;
+  position: relative;
+  height: 75px;
+  width: 300px;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Conic gradient */
+.nitrogen-animated::before {
+  content: "";
+  background: conic-gradient(
+    var(--info-100) 20deg,
+    var(--info-200) 60deg,
+    var(--info-300) 80deg,
+    transparent 180deg
+  );
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 1;
+  width: 100%;
+  animation: rotate 2s linear infinite;
+}
+
+/* Overlay */
+.nitrogen-animated::after {
+  content: "";
+  background: inherit;
+  border-radius: inherit;
+  position: absolute;
+  inset: var(--offset);
+  height: calc(100% - 2 * var(--offset));
+  width: calc(100% - 2 * var(--offset));
+}
+
+.nitrogen-animated button {
+  background: var(--info-100);
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  inset: 0;
+  z-index: 10;
+  border: 0;
+}
+
+.nitrogen-animated__spacing {
+  width: calc(100% - 7px);
+  height: calc(100% - 6px);
+  background: var(--background);
+  border-radius: inherit;
+  inset: 3;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) scale(1.4) rotate(0turn);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.4) rotate(1turn);
+  }
+}
